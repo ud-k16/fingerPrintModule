@@ -75,6 +75,7 @@ public class FingerPrintScanner extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showFingerPrintAuthDialog() {
+
         FragmentActivity activity = (FragmentActivity) getCurrentActivity();
         Executor executor = ContextCompat.getMainExecutor(getReactApplicationContext());
         BiometricPrompt biometricPrompt = new BiometricPrompt(activity,
@@ -83,28 +84,23 @@ public class FingerPrintScanner extends ReactContextBaseJavaModule {
                     public void onAuthenticationError(int errorCode,
                             @NonNull CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        Toast.makeText(getReactApplicationContext(),
-                                "Authentication error: " + errString, Toast.LENGTH_SHORT)
-                                .show();
+                        displayToast("Authentication error: " + errString);
                     }
 
                     @Override
                     public void onAuthenticationSucceeded(
                             @NonNull BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
-                        Toast.makeText(getReactApplicationContext(),
-                                "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+                        displayToast("Authentication succeeded!");
                     }
 
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
-                        Toast.makeText(getReactApplicationContext(), "Authentication failed",
-                                Toast.LENGTH_SHORT)
-                                .show();
+                        displayToast("Authentication failed");
                     }
                 });
-        displayToast("auth function");
+
         // promptinfo
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric login for my app")
