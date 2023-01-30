@@ -19,6 +19,7 @@ import androidx.biometric.*;
 import androidx.core.content.ContextCompat;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import com.facebook.react.bridge.UiThreadUtil;
 
 public class FingerPrintScanner extends ReactContextBaseJavaModule {
 
@@ -34,33 +35,27 @@ public class FingerPrintScanner extends ReactContextBaseJavaModule {
     // creating instance of BioMetricManager
     BiometricManager biometricManager = BiometricManager.from(getReactApplicationContext());
 
-    // private Executor executor;
-    // private BiometricPrompt biometricPrompt;
-    // private BiometricPrompt.PromptInfo promptInfo;
-
     @ReactMethod
     public void isBiometrixAvailable(Callback callBack) {
         // writable map to send to js
         WritableMap map = Arguments.createMap();
-        // callwork text
-        map.putString("callback", " callback works");
-
+        // checks if biomatrix Auth available
         switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-                map.putString("status", " App can authenticate using biometrics.");
                 map.putBoolean("isBiometrix", true);
                 displayToast("yes biomatrix available");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Log.e("MY_APP_TAG", "No biometric features available on this device.");
-                // b.biometricCardView.setVisibility(View.GONE);
+                map.putBoolean("isBiometrix", false);
+                displayToast("No biometric features available on this device.");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Log.e("MY_APP_TAG", "Biometric features are currently unavailable.");
-                // b.biometricCardView.setVisibility(View.GONE);
+                map.putBoolean("isBiometrix", false);
+                displayToast("Biometric features are currently unavailable.");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Log.e("MY_APP_TAG", "Biometric  no enrolled");
+                map.putBoolean("isBiometrix", true);
+                displayToast("Biometric  no enrolled");
                 // Prompts the user to create credentials that your app accepts.
                 // final Intent enrollIntent = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
                 // enrollIntent.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,BiometricManager.Authenticators.BIOMETRIC_WEAK
@@ -75,42 +70,49 @@ public class FingerPrintScanner extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showFingerPrintAuthDialog() {
+        // inorder for it to be called on main ui thread
+        UiThreadUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-        FragmentActivity activity = (FragmentActivity) getCurrentActivity();
-        Executor executor = ContextCompat.getMainExecutor(getReactApplicationContext());
-        BiometricPrompt biometricPrompt = new BiometricPrompt(activity,
-                executor, new BiometricPrompt.AuthenticationCallback() {
-                    @Override
-                    public void onAuthenticationError(int errorCode,
-                            @NonNull CharSequence errString) {
-                        super.onAuthenticationError(errorCode, errString);
-                        displayToast("Authentication error: " + errString);
-                    }
+                FragmentActivity activity = (FragmentActivity) getCurrentActivity();
+                Executor executor = ContextCompat.getMainExecutor(getReactApplicationContext());
+                BiometricPrompt biometricPrompt = new BiometricPrompt(activity,
+                        executor, new BiometricPrompt.AuthenticationCallback() {
+                            @Override
+                            public void onAuthenticationError(int errorCode,
+                                    @NonNull CharSequence errString) {
+                                super.onAuthenticationError(errorCode, errString);
+                                displayToast("Authentication error: " + errString);
+                            }
 
-                    @Override
-                    public void onAuthenticationSucceeded(
-                            @NonNull BiometricPrompt.AuthenticationResult result) {
-                        super.onAuthenticationSucceeded(result);
-                        displayToast("Authentication succeeded!");
-                    }
+                            @Override
+                            public void onAuthenticationSucceeded(
+                                    @NonNull BiometricPrompt.AuthenticationResult result) {
+                                super.onAuthenticationSucceeded(result);
+                                displayToast("Authentication succeeded!");
+                            }
 
-                    @Override
-                    public void onAuthenticationFailed() {
-                        super.onAuthenticationFailed();
-                        displayToast("Authentication failed");
-                    }
-                });
+                            @Override
+                            public void onAuthenticationFailed() {
+                                super.onAuthenticationFailed();
+                                displayToast("Authentication failed");
+                            }
+                        });
 
-        // promptinfo
-        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric login for my app")
-                .setSubtitle("Log in using your biometric credential")
+                // instance of promptInfo [this creates the dialog widget]
+                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("Biometric login for my app")
+                        .setSubtitle("Log in using your biometric credential")
+                        // .setAllowedAuthenticators(
+                        // BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                        .setNegativeButtonText("Use account password")
+                        .build();
+                // calling the biometricPrompt
+                biometricPrompt.authenticate(promptInfo);
+            }
+        });
 
-                // .setAllowedAuthenticators(
-                // BiometricManager.Authenticators.BIOMETRIC_STRONG)
-                .setNegativeButtonText("Use account password")
-                .build();
-        biometricPrompt.authenticate(promptInfo);
     }
 
     public void displayToast(String text) {
