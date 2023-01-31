@@ -1,7 +1,7 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
-import FingerPrintScanner from './FingerPrintModule';
+import FingerPrintScanner from '../FingerPrintModule';
 
-const App = () => {
+const BioMatrixTest = () => {
   const printWorking = outputFromNativeModules => {
     console.log(`${JSON.stringify(outputFromNativeModules, null, 4)}`);
   };
@@ -26,6 +26,6 @@ const App = () => {
   );
 };
 
-export default App;
+export default BioMatrixTest;
 
 const styles = StyleSheet.create({});
