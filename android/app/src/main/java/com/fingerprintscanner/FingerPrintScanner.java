@@ -102,11 +102,11 @@ public class FingerPrintScanner extends ReactContextBaseJavaModule {
 
                 // instance of promptInfo [this creates the dialog widget]
                 BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                        .setTitle("Biometric login for my app")
-                        .setSubtitle("Log in using your biometric credential")
-                        // .setAllowedAuthenticators(
-                        // BiometricManager.Authenticators.BIOMETRIC_STRONG)
-                        .setNegativeButtonText("Use account password")
+                        .setTitle("Biometric login ")
+                        .setSubtitle("Log in using biometric credential")
+                        .setDeviceCredentialAllowed(true)
+                        // .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                        // .setNegativeButtonText("Use account password")
                         .build();
                 // calling the biometricPrompt
                 biometricPrompt.authenticate(promptInfo);
