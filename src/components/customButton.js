@@ -1,14 +1,16 @@
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-paper';
 
-const CustomButton = ({children, onPress}) => {
+const CustomButton = ({children, onPress, textColor, style, icon}) => {
   return (
     <Button
       mode="outlined"
       children={children}
-      textColor={'black'}
+      textColor={textColor ? textColor : 'black'}
       labelStyle={styles.buttonLabel}
       onPress={onPress}
+      style={style}
+      icon={icon}
     />
   );
 };
