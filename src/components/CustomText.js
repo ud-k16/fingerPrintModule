@@ -7,8 +7,8 @@ import {Text} from 'react-native-paper';
  * @returns
  */
 const CustomTextBold = props => {
-  const {children, color} = props;
-  return <Text variant="titleLarge" children={children} />;
+  const {children, color, style} = props;
+  return <Text variant="titleLarge" children={children} style={style} />;
 };
 
 /**

@@ -7,7 +7,7 @@ const CustomTextInput = props => {
   const onTextChange = text => setText(text);
   return (
     <View style={[styles.container, style]}>
-      <CustomTextBold children={info} />
+      <CustomTextBold children={info} style={styles.flexShare} />
       <TextInput
         right={right}
         placeholder={placeholder}
@@ -22,10 +22,10 @@ const CustomTextInput = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
-  textInput: {backgroundColor: 'white'},
+  textInput: {backgroundColor: 'white', flexBasis: '60%'},
+  flexShare: {flexBasis: '20%'},
 });
 
 export default CustomTextInput;
