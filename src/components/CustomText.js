@@ -17,9 +17,13 @@ const CustomTextBold = props => {
  * @returns
  */
 const CustomTextDescription = props => {
-  const {children} = props;
+  const {children, style} = props;
   return (
-    <Text variant="titleLarge" children={children} style={styles.describe} />
+    <Text
+      variant="titleLarge"
+      children={children}
+      style={[styles.describe, style]}
+    />
   );
 };
 
@@ -29,9 +33,13 @@ const CustomTextDescription = props => {
  * @returns
  */
 const CustomTextTitle = props => {
-  const {children} = props;
+  const {children, fontSize} = props;
   return (
-    <Text variant="displaySmall" children={children} style={styles.title} />
+    <Text
+      variant="displaySmall"
+      children={children}
+      style={[styles.title, {fontSize: fontSize}]}
+    />
   );
 };
 

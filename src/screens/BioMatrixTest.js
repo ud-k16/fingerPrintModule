@@ -26,6 +26,5 @@ const BioMatrixTest = () => {
   );
 };
 
-export default BioMatrixTest;
-
 const styles = StyleSheet.create({});
+export default BioMatrixTest;

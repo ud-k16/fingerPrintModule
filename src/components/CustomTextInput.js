@@ -13,6 +13,7 @@ const CustomTextInput = props => {
     maxLength,
     keyboardType,
     textContentType,
+    secureTextEntry,
   } = props;
   const onTextChange = text => setText(text);
   return (
@@ -27,6 +28,7 @@ const CustomTextInput = props => {
         style={styles.textInput}
         keyboardType={keyboardType}
         textContentType={textContentType}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   );
@@ -36,8 +38,8 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
   },
-  textInput: {backgroundColor: 'white', flexBasis: '40%'},
-  flexShare: {flexBasis: '20%'},
+  textInput: {backgroundColor: 'white', flexBasis: 'auto'},
+  flexShare: {flexBasis: 'auto'},
 });
 
 export default CustomTextInput;

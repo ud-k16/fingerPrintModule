@@ -9,6 +9,7 @@ import TaxiMap from './Map';
 import Verify from './Verify';
 import Phone from './Phone';
 import CustomComponent from '../components/customComponent';
+import BioMatrix from './BioMatrix';
 
 const Stack = createNativeStackNavigator();
 const NavigationScreens = () => {
@@ -18,13 +19,14 @@ const NavigationScreens = () => {
         screenOptions={{
           header: props => <Header {...props} />,
         }}
-        initialRouteName={'Home'}>
+        initialRouteName={'bioMatrix'}>
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="biometrixTest" component={BioMatrixTest} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="taxiMap" component={TaxiMap} />
         <Stack.Screen name="verify" component={Verify} />
         <Stack.Screen name="phone" component={Phone} />
+        <Stack.Screen name="bioMatrix" component={BioMatrix} />
       </Stack.Navigator>
     </NavigationContainer>
   );
