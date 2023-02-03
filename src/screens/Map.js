@@ -12,7 +12,7 @@ import {
 import BottomSheet from '@gorhom/bottom-sheet';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {CustomTextBold} from '../components/CustomText';
+import {CustomTextBold, CustomTextDescription} from '../components/CustomText';
 
 const TaxiMap = ({navigation}) => {
   const bottomSheetRef = useRef(null);
@@ -101,8 +101,13 @@ const BottomSheetComponent = gestureHandlerRootHOC(({bottomSheetRef}) => {
           setSelect={setSelect}
         />
       </View>
-      <Available title={'4 SEATED'} />
-      <Available title={'STANDARD'} style={{backgroundColor: 'white'}} />
+      <Available title={'4 SEATED'} minutes={7} amount={230} />
+      <Available
+        title={'STANDARD'}
+        style={{backgroundColor: 'white'}}
+        minutes={7}
+        amount={230}
+      />
     </BottomSheet>
   );
 });
@@ -150,11 +155,25 @@ const Option = ({title, select, setSelect}) => {
   );
 };
 
-const Available = ({title, style}) => {
+const Available = ({title, style, amount, minutes}) => {
   return (
     <View style={[styles.available, style]}>
-      <Icon name={'directions-car'} size={35} color={'#FFA533'} />
-      <Text>{title}</Text>
+      <Icon
+        name={'directions-car'}
+        size={30}
+        color={'#FFA533'}
+        style={{
+          backgroundColor: 'black',
+          borderRadius: 25,
+          padding: 10,
+        }}
+      />
+      <Text>{' ' + title}</Text>
+      <Text style={{fontSize: 10}}> {minutes + ' mins'} </Text>
+      <CustomTextDescription
+        children={'$' + amount}
+        style={{right: 3, position: 'absolute'}}
+      />
     </View>
   );
 };
