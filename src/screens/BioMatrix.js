@@ -25,7 +25,9 @@ const BioMatrix = () => {
           name={'fingerprint'}
           size={85}
           color={'#FFA533'}
-          onPress={() => bottomSheetRef.current.close()}
+          onPress={() => {
+            FingerPrintScanner.showFingerPrintAuthDialog();
+          }}
         />
         <Separator />
         <CustomTextInput
