@@ -12,7 +12,7 @@ const MainScreen = ({navigation}) => {
         children={'Taxi Map'}
       />
       <CustomButton onPress={() => handlePress('verify')} children={'verify'} />
-      verify
+      <CustomButton onPress={() => handlePress('phone')} children={'phone'} />
     </View>
   );
 };

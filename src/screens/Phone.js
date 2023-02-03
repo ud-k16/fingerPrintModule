@@ -1,41 +1,15 @@
 import {Image, StyleSheet, View} from 'react-native';
-import {
-  CustomTextBold,
-  CustomTextDescription,
-  CustomTextTitle,
-} from '../components/CustomText';
-import CustomTextInput from '../components/CustomTextInput';
-import {TextInput} from 'react-native-paper';
-import {useState} from 'react';
-import CustomButton from '../components/customButton';
-import SocialAuthButton from '../components/SocialAuthButton';
+import CustomComponent from '../components/customComponent';
 
-const Phone = props => {
-  const [text, setText] = useState('');
+const Phone = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.passwordPhoneContainer}>
-        <Image source={require('../image/icon.png')} style={styles.logo} />
-        <CustomTextDescription children={'Proceed with your'} />
-        <CustomTextTitle children={'Mobile'} />
-        <CustomTextInput
-          info={'Your Mobile Number'}
-          right={<TextInput.Icon icon={'cellphone'} />}
-          text={text}
-          setText={setText}
-          placeholder={'+91 2345677889'}
-          style={{flex: 0.7}}
-          maxLength={6}
-          keyboardType="number-pad"
-          textContentType={'telephoneNumber'}
-        />
-        <CustomButton
-          children={'next'}
-          textColor={'#FFA533'}
-          style={styles.button}
-        />
-      </View>
-    </View>
+    <CustomComponent
+      title="Mobile"
+      description="Proceed with your"
+      textInputDescription="Your Mobile Number"
+      textInputIconName={'cellphone'}
+      textInputPlaceHolder={'+91 7456-558-696'}
+    />
   );
 };
 
