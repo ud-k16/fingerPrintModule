@@ -10,23 +10,24 @@ import {useState} from 'react';
 import CustomButton from '../components/customButton';
 import SocialAuthButton from '../components/SocialAuthButton';
 
-const Verify = props => {
+const Phone = props => {
   const [text, setText] = useState('');
   return (
     <View style={styles.container}>
-      <View style={styles.passwordVerifyContainer}>
+      <View style={styles.passwordPhoneContainer}>
         <Image source={require('../image/icon.png')} style={styles.logo} />
-        <CustomTextDescription children={'Enter your 4 digit'} />
-        <CustomTextTitle children={'Verification code'} />
+        <CustomTextDescription children={'Proceed with your'} />
+        <CustomTextTitle children={'Mobile'} />
         <CustomTextInput
-          info={'OTP'}
-          right={<TextInput.Icon icon={'account'} iconColor={'#FFA533'} />}
+          info={'Your Mobile Number'}
+          right={<TextInput.Icon icon={'cellphone'} />}
           text={text}
           setText={setText}
-          placeholder={'David Louis'}
+          placeholder={'+91 2345677889'}
           style={{flex: 0.7}}
           maxLength={6}
           keyboardType="number-pad"
+          textContentType={'telephoneNumber'}
         />
         <CustomButton
           children={'next'}
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 20,
   },
-  passwordVerifyContainer: {
+  passwordPhoneContainer: {
     paddingHorizontal: 20,
     flex: 0.6,
     justifyContent: 'space-evenly',
@@ -68,4 +69,4 @@ const styles = StyleSheet.create({
   button: {borderColor: '#FFA533', width: '30%', right: -221},
 });
 
-export default Verify;
+export default Phone;

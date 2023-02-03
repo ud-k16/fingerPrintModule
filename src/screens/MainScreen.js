@@ -7,6 +7,12 @@ const MainScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <CustomButton onPress={() => handlePress('login')} children={'Login'} />
+      <CustomButton
+        onPress={() => handlePress('taxiMap')}
+        children={'Taxi Map'}
+      />
+      <CustomButton onPress={() => handlePress('verify')} children={'verify'} />
+      verify
     </View>
   );
 };

@@ -3,7 +3,17 @@ import {TextInput} from 'react-native-paper';
 import {CustomTextBold} from './CustomText';
 
 const CustomTextInput = props => {
-  const {info, right, placeholder = '', setText, text, style} = props;
+  const {
+    info,
+    right,
+    placeholder = '',
+    setText,
+    text,
+    style,
+    maxLength,
+    keyboardType,
+    textContentType,
+  } = props;
   const onTextChange = text => setText(text);
   return (
     <View style={[styles.container, style]}>
@@ -15,6 +25,8 @@ const CustomTextInput = props => {
         value={text}
         mode={'flat'}
         style={styles.textInput}
+        keyboardType={keyboardType}
+        textContentType={textContentType}
       />
     </View>
   );
@@ -24,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
   },
-  textInput: {backgroundColor: 'white', flexBasis: '60%'},
+  textInput: {backgroundColor: 'white', flexBasis: '40%'},
   flexShare: {flexBasis: '20%'},
 });
 
