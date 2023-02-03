@@ -38,7 +38,7 @@ const CustomTextTitle = props => {
     <Text
       variant="displaySmall"
       children={children}
-      style={[styles.title, {fontSize: fontSize}]}
+      style={fontSize ? [styles.title, {fontSize: fontSize}] : styles.title}
     />
   );
 };
