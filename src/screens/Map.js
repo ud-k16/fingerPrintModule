@@ -43,7 +43,7 @@ const TaxiMap = ({navigation}) => {
         minZoomLevel={2}
       />
       <Modal transparent visible={true}>
-        <SelectOptions bottomSheetRef={bottomSheetRef} />
+        <BottomSheetComponent bottomSheetRef={bottomSheetRef} />
       </Modal>
     </View>
   );
@@ -82,7 +82,7 @@ const MapViewHeader = () => {
 };
 
 //inorder for enablePanDownToClose to work wrappng it in gestureHandlerRootHOC
-const SelectOptions = gestureHandlerRootHOC(({bottomSheetRef}) => {
+const BottomSheetComponent = gestureHandlerRootHOC(({bottomSheetRef}) => {
   const [select, setSelect] = useState();
 
   return (
@@ -91,7 +91,7 @@ const SelectOptions = gestureHandlerRootHOC(({bottomSheetRef}) => {
       index={0}
       snapPoints={['60%']}
       enablePanDownToClose={true}>
-      <Back />
+      <Back bottomSheetRef={bottomSheetRef} />
       <View style={styles.optionContainer}>
         <Option title={'RENT'} select={select} setSelect={setSelect} />
         <Option title={'DAILY'} select={select} setSelect={setSelect} />
@@ -105,7 +105,7 @@ const SelectOptions = gestureHandlerRootHOC(({bottomSheetRef}) => {
   );
 });
 
-const Back = () => {
+const Back = ({bottomSheetRef}) => {
   return (
     <View style={styles.backContainer}>
       <Icon
@@ -118,7 +118,9 @@ const Back = () => {
     </View>
   );
 };
+
 const Option = ({title, select, setSelect}) => {
+  const isSelected = select == title;
   return (
     <TouchableHighlight onPress={() => setSelect(title)} style={{flex: 1}}>
       <View style={styles.option}>
@@ -126,7 +128,7 @@ const Option = ({title, select, setSelect}) => {
           name={'directions-car'}
           size={35}
           // color={'#FFA533'}
-          color={MD3LightTheme.colors.surfaceDisabled}
+          color={isSelected ? '#FFA533' : MD3LightTheme.colors.surfaceDisabled}
         />
         <Icon
           name={'arrow-drop-down-circle'}
@@ -135,8 +137,12 @@ const Option = ({title, select, setSelect}) => {
           style={{elevation: 1000, zIndex: 1000}}
         />
 
-        <Divider style={styles.divider} />
-        <Text style={styles.title}>{title}</Text>
+        <Divider
+          style={
+            isSelected ? [styles.divider, styles.selected] : styles.divider
+          }
+        />
+        <Text style={isSelected ? styles.titleOnSelection : {}}>{title}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -168,7 +174,7 @@ const styles = StyleSheet.create({
     bottom: 45,
     left: 8,
   },
-  title: {},
+  titleOnSelection: {color: '#FFA533'},
   selected: {
     backgroundColor: '#FFA533',
   },
