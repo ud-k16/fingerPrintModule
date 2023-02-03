@@ -101,6 +101,8 @@ const BottomSheetComponent = gestureHandlerRootHOC(({bottomSheetRef}) => {
           setSelect={setSelect}
         />
       </View>
+      <Available title={'4 SEATED'} />
+      <Available title={'STANDARD'} style={{backgroundColor: 'white'}} />
     </BottomSheet>
   );
 });
@@ -147,10 +149,20 @@ const Option = ({title, select, setSelect}) => {
     </TouchableHighlight>
   );
 };
+
+const Available = ({title, style}) => {
+  return (
+    <View style={[styles.available, style]}>
+      <Icon name={'directions-car'} size={35} color={'#FFA533'} />
+      <Text>{title}</Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   backContainer: {
     backgroundColor: MD3LightTheme.colors.surfaceDisabled,
-    flex: 0.17,
+    flex: 0.3,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -158,9 +170,9 @@ const styles = StyleSheet.create({
   },
   optionContainer: {
     flexDirection: 'row',
-    flex: 0.3,
+    flex: 0.7,
     width: '100%',
-    paddingVertical: 40,
+    paddingVertical: 45,
   },
   option: {
     flex: 1,
@@ -170,13 +182,17 @@ const styles = StyleSheet.create({
     backgroundColor: MD3LightTheme.colors.surfaceDisabled,
     height: 7,
     width: '100%',
-    position: 'absolute',
-    bottom: 45,
-    left: 8,
+    bottom: 19,
   },
   titleOnSelection: {color: '#FFA533'},
   selected: {
     backgroundColor: '#FFA533',
+  },
+  available: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 0.4,
+    backgroundColor: MD3LightTheme.colors.surfaceDisabled,
   },
 });
 export default TaxiMap;
