@@ -10,6 +10,8 @@ import Verify from './Verify';
 import Phone from './Phone';
 import CustomComponent from '../components/customComponent';
 import BioMatrix from './BioMatrix';
+import Splash from './Splash';
+import Ride from './Ride';
 
 const Stack = createNativeStackNavigator();
 const NavigationScreens = () => {
@@ -19,7 +21,7 @@ const NavigationScreens = () => {
         screenOptions={{
           header: props => <Header {...props} />,
         }}
-        initialRouteName={'verify'}>
+        initialRouteName={'ride'}>
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="biometrixTest" component={BioMatrixTest} />
         <Stack.Screen name="login" component={Login} />
@@ -27,6 +29,8 @@ const NavigationScreens = () => {
         <Stack.Screen name="verify" component={Verify} />
         <Stack.Screen name="phone" component={Phone} />
         <Stack.Screen name="bioMatrix" component={BioMatrix} />
+        <Stack.Screen name="splash" component={Splash} />
+        <Stack.Screen name="ride" component={Ride} />
       </Stack.Navigator>
     </NavigationContainer>
   );
