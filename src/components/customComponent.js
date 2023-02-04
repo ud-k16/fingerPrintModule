@@ -16,6 +16,7 @@ const CustomComponent = ({
   title = 'Title',
   textInputDescription = 'enter input',
   textInputIconName,
+  textInputIconColor,
   textInputPlaceHolder,
   keyboardType,
   textContentType,
@@ -32,7 +33,12 @@ const CustomComponent = ({
       {enableCustomInput && (
         <CustomTextInput
           info={textInputDescription}
-          right={<TextInput.Icon icon={textInputIconName} />}
+          right={
+            <TextInput.Icon
+              icon={textInputIconName}
+              iconColor={textInputIconColor}
+            />
+          }
           text={text}
           setText={setText}
           placeholder={textInputPlaceHolder}
