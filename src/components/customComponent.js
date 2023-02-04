@@ -1,5 +1,11 @@
 import {useState} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  KeyboardAvoidingView,
+  View,
+  ScrollView,
+} from 'react-native';
 import {CustomTextDescription, CustomTextTitle} from '../components/CustomText';
 import CustomTextInput from '../components/CustomTextInput';
 import {TextInput} from 'react-native-paper';
@@ -13,32 +19,37 @@ const CustomComponent = ({
   textInputPlaceHolder,
   keyboardType,
   textContentType,
+  buttonText = 'next',
+  enableCustomInput = true,
+  enableCustomButtom = true,
 }) => {
   const [text, setText] = useState();
   return (
-    <View style={styles.container}>
-      <View style={styles.passwordPhoneContainer}>
-        <Image source={require('../image/icon.png')} style={styles.logo} />
-        <CustomTextDescription children={description} />
-        <CustomTextTitle children={title} />
+    <KeyboardAvoidingView style={styles.container}>
+      <Image source={require('../image/icon.png')} style={styles.logo} />
+      <CustomTextDescription children={description} />
+      <CustomTextTitle children={title} />
+      {enableCustomInput && (
         <CustomTextInput
           info={textInputDescription}
           right={<TextInput.Icon icon={textInputIconName} />}
           text={text}
           setText={setText}
           placeholder={textInputPlaceHolder}
-          style={{flex: 0.7}}
+          style={{flex: 0.5}}
           maxLength={6}
           keyboardType={keyboardType}
           textContentType={textContentType}
         />
+      )}
+      {enableCustomButtom && (
         <CustomButton
-          children={'next'}
+          children={buttonText}
           textColor={'#FFA533'}
           style={styles.button}
         />
-      </View>
-    </View>
+      )}
+    </KeyboardAvoidingView>
   );
 };
 
@@ -48,11 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     paddingTop: 20,
-  },
-  passwordPhoneContainer: {
     paddingHorizontal: 20,
-    flex: 0.6,
-    justifyContent: 'space-evenly',
   },
 
   logo: {width: '20%', height: '20%', resizeMode: 'contain'},

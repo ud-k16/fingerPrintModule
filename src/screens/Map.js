@@ -89,7 +89,7 @@ const BottomSheetComponent = gestureHandlerRootHOC(({bottomSheetRef}) => {
     <BottomSheet
       ref={bottomSheetRef}
       index={0}
-      snapPoints={['60%']}
+      snapPoints={['50%']}
       enablePanDownToClose={true}>
       <Back bottomSheetRef={bottomSheetRef} />
       <View style={styles.optionContainer}>
@@ -134,7 +134,6 @@ const Option = ({title, select, setSelect}) => {
         <Icon
           name={'directions-car'}
           size={35}
-          // color={'#FFA533'}
           color={isSelected ? '#FFA533' : MD3LightTheme.colors.surfaceDisabled}
         />
         <Icon

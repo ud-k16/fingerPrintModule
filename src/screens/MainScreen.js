@@ -13,6 +13,12 @@ const MainScreen = ({navigation}) => {
       />
       <CustomButton onPress={() => handlePress('verify')} children={'verify'} />
       <CustomButton onPress={() => handlePress('phone')} children={'phone'} />
+      <CustomButton
+        onPress={() => handlePress('bioMatrix')}
+        children={'BioMatrix'}
+      />
+      <CustomButton onPress={() => handlePress('splash')} children={'Splash'} />
+      <CustomButton onPress={() => handlePress('ride')} children={'Ride'} />
     </View>
   );
 };
