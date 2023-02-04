@@ -23,6 +23,7 @@ const CustomComponent = ({
   buttonText = 'next',
   enableCustomInput = true,
   enableCustomButtom = true,
+  style,
 }) => {
   const [text, setText] = useState();
   return (
