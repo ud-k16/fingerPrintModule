@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 0.7,
     width: '100%',
-    paddingVertical: 45,
+    paddingVertical: 20,
   },
   option: {
     flex: 1,
