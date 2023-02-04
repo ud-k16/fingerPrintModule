@@ -21,7 +21,7 @@ const NavigationScreens = () => {
         screenOptions={{
           header: props => <Header {...props} />,
         }}
-        initialRouteName={'splash'}>
+        initialRouteName={'Home'}>
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="biometrixTest" component={BioMatrixTest} />
         <Stack.Screen name="login" component={Login} />

@@ -6,19 +6,20 @@ const MainScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <CustomButton onPress={() => handlePress('splash')} children={'Splash'} />
+      <CustomButton onPress={() => handlePress('ride')} children={'Ride'} />
       <CustomButton onPress={() => handlePress('login')} children={'Login'} />
-      <CustomButton
-        onPress={() => handlePress('taxiMap')}
-        children={'Taxi Map'}
-      />
+
       <CustomButton onPress={() => handlePress('verify')} children={'verify'} />
       <CustomButton onPress={() => handlePress('phone')} children={'phone'} />
       <CustomButton
         onPress={() => handlePress('bioMatrix')}
         children={'BioMatrix'}
       />
-      <CustomButton onPress={() => handlePress('splash')} children={'Splash'} />
-      <CustomButton onPress={() => handlePress('ride')} children={'Ride'} />
+      <CustomButton
+        onPress={() => handlePress('taxiMap')}
+        children={'Taxi Map'}
+      />
     </View>
   );
 };
