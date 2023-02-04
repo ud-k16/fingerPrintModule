@@ -4,14 +4,16 @@ import {useEffect, useState, useCallback, useRef} from 'react';
 
 const Splash = () => {
   const [value, setValue] = useState(1);
-
+  setInterval(() => {
+    setValue(((value + 3) % 3) + 1);
+  }, 1000);
   return (
     <View style={styles.container}>
       <Image source={require('../image/icon.png')} style={styles.logo} />
       <Text style={styles.text}>WHEELS</Text>
-      <RadioButton.Group value={value.current}>
+      <RadioButton.Group value={value}>
         <View style={styles.radioContainer}>
-          <RadioButton.Item value={1} />
+          <RadioButton.Item value={1} style={styles.radio} />
           <RadioButton.Item value={2} />
           <RadioButton.Item value={3} />
         </View>
@@ -22,9 +24,10 @@ const Splash = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'white',
+    paddingTop: 25,
     flex: 1,
   },
   text: {
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
   },
   logo: {width: '50%', height: '40%', resizeMode: 'contain'},
   radioContainer: {flexDirection: 'row'},
+  radio: {},
 });
 
 export default Splash;
