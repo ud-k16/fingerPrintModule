@@ -9,6 +9,7 @@ const Phone = () => {
       textInputDescription="Your Mobile Number"
       textInputIconName={'cellphone'}
       textInputPlaceHolder={'+91 7456-558-696'}
+      keyboardType={'number-pad'}
     />
   );
 };
