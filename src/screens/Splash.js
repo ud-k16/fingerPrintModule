@@ -4,9 +4,15 @@ import {useEffect, useState, useCallback, useRef} from 'react';
 
 const Splash = () => {
   const [value, setValue] = useState(1);
-  setInterval(() => {
-    setValue(((value + 3) % 3) + 1);
-  }, 1000);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      //((value + 3) % 3) + 1
+      setValue(prevTime => ((prevTime + 3) % 3) + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image source={require('../image/icon.png')} style={styles.logo} />
